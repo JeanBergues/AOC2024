@@ -25,6 +25,29 @@ def main_a(puzzle_input):
     return len(visited_positions)
 
 
+def return_visited_positions(layout, starting_position):
+    direction_array = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+    visited_positions = set()
+    visited_positions.add(starting_position)
+    current_direction = 0
+    current_position = starting_position
+
+    reached_edge = False
+    map_dim = len(layout)
+
+    while not reached_edge:
+        x, y = current_position[0] + direction_array[current_direction][0], current_position[1] + direction_array[current_direction][1]
+        if x < 0 or y < 0 or x >= map_dim or y >= map_dim:
+            reached_edge = True
+        elif layout[y][x] == '#':
+            current_direction = (current_direction + 1) % 4
+        else:
+            current_position = (x, y)
+            visited_positions.add(current_position)
+
+    return visited_positions
+
+
 def check_for_loop(layout, starting_position):
     # Dit moet sneller kunnen. Maar is snel genoeg!
     direction_array = [(0, -1), (1, 0), (0, 1), (-1, 0)]
@@ -43,7 +66,7 @@ def check_for_loop(layout, starting_position):
             reached_edge = True
         elif layout[y][x] == '#':
             current_direction = (current_direction + 1) % 4
-            if n_steps_retraced >= 10: # Magisch getalletje: 2 is niet genoeg
+            if n_steps_retraced >= 3: # Magisch getalletje: 2 is niet genoeg
                 return True
         else:
             current_position = (x, y)
@@ -57,7 +80,6 @@ def check_for_loop(layout, starting_position):
 
 def main_b(puzzle_input):
     total_working_solutions = 0
-
     layout = [list(line.strip()) for line in puzzle_input]
     for i, row in enumerate(layout):
         if '^' in row:
@@ -71,6 +93,24 @@ def main_b(puzzle_input):
                     total_working_solutions += 1
                 layout[y][x] = '.'
 
+    return total_working_solutions
+
+
+def main_b_beter(puzzle_input):
+    total_working_solutions = 0
+
+    # Idee voor sneller algoritme: check alleen de posities waar de guard al langs loopt
+    layout = [list(line.strip()) for line in puzzle_input]
+    for i, row in enumerate(layout):
+        if '^' in row:
+            starting_position = (row.index('^'), i)
+    
+    for x, y in return_visited_positions(layout, starting_position):
+        if layout[y][x] == '.':
+            layout[y][x] = '#'
+            if check_for_loop(layout, starting_position):
+                total_working_solutions += 1
+            layout[y][x] = '.'
 
     return total_working_solutions
 
@@ -80,4 +120,4 @@ if __name__ == '__main__':
     # with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
     #     print(main_a(full_input))
     with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
-        print(main_b(full_input))
+        print(main_b_beter(full_input))
