@@ -39,6 +39,7 @@ def main_b(puzzle_input):
 
     file_array_empty = False
     discard_pile = []
+    left_side = []
     while not file_array_empty:
         last_file = file_array[-1]
         if last_file[0] == None:
@@ -82,7 +83,7 @@ def main_b(puzzle_input):
 
 
 if __name__ == '__main__':
-    EXAMPLE_MODE = False
+    EXAMPLE_MODE = True
     with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
         print(main_a(full_input))
     with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
