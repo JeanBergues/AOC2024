@@ -20,7 +20,6 @@ def main_a(puzzle_input):
 
 
 def main_b(puzzle_input):
-    MAX_PRESSES = 100
     total_tokens = 0
     extra_factor = 10000000000000
 
@@ -38,16 +37,17 @@ def main_b(puzzle_input):
         Delta = XA * YB - XB * YA
         Delta1 = XP * YB - YP * XB
         Delta2 = XA * YP - YA * XP
-
+        
         if Delta1 % Delta == 0 and Delta2 % Delta == 0:
             total_tokens += 3 * (Delta1 // Delta) + (Delta2 // Delta)
+            print((Delta1 // Delta), (Delta2 // Delta))
             
     return total_tokens
 
 
 if __name__ == '__main__':
     EXAMPLE_MODE = False
-    with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
+    with open('example.txt', 'r') if EXAMPLE_MODE else open('input_Sven.txt', 'r') as full_input:
         print(main_a(full_input))
-    with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
+    with open('example.txt', 'r') if EXAMPLE_MODE else open('input_Sven.txt', 'r') as full_input:
         print(main_b(full_input))
