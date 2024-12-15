@@ -79,7 +79,7 @@ def main_b(puzzle_input, xlim, ylim):
 if __name__ == '__main__':
     EXAMPLE_MODE = False
     limits = (11, 7) if EXAMPLE_MODE else (101, 103)
-    # with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
-    #     print(main_a(full_input, *limits))
+    with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
+        print(main_a(full_input, *limits))
     with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
         print(main_b(full_input, *limits))
