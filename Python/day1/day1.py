@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def main_a(puzzle_input):
     left_list, right_list = [], []
     for line in puzzle_input:
@@ -33,7 +32,8 @@ def main_b(puzzle_input):
 
 if __name__ == '__main__':
     EXAMPLE_MODE = False
-    with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
+    file_name = 'example.txt' if EXAMPLE_MODE else 'input.txt'
+    with open(file_name, 'r') as full_input:
         print(main_a(full_input))
-    with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
+        full_input.seek(0)
         print(main_b(full_input))
