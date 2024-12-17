@@ -1,0 +1,38 @@
+INPUT = 2,4,1,5,7,5,1,6,4,1,5,5,0,3,3,0
+
+!!! Het programma eindigt alleen als A == 0 bij de laatste stap!
+
+Eerste instructie: 2, 4
+B1 = A0 % 8
+! Kijkt als het ware alleen naar de laatste 3 bits van A
+
+Tweede instructie 1, 5
+B2 = B1 ^ 5
+
+Derde instructie 7, 5
+C3 = A0 // (2 ** B2)
+
+Vierde instructie 1, 6
+B4 = B3 ^ 6
+
+Vijfde instructie 4, 1
+B5 = B4 ^ C3
+
+Inverse van de XOR is XOR zelf, oftewel C3 = B3 ^ B4
+Dus B5 = B4 ^ B4 ^ B3 = 0 ^ B3 = B3 -> De XOR stappen doen niets
+
+Zesde instructie 5, 5
+Output B5 = B3 
+
+Zevende instructie 0, 3
+A = A // 8
+Haalt als het ware de meest linker bits van A weg
+
+Laatste instructie 3, 0
+Ga naar begin als A != 0
+
+Oftewel als de output 16 lang is -> 16 herhalingen van het programma -> A > 8 ** 15 om mee te beginnen
+
+0101 = 5
+0111 = 7
+0010 = 2
