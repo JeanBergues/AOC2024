@@ -1,12 +1,10 @@
 def main_a(puzzle_input):
-    print(5 ^ 6)
     full_input = puzzle_input.read().splitlines()
     
     A = int(full_input[0].split(':')[1].strip())
     B = int(full_input[1].split(':')[1].strip())
     C = int(full_input[2].split(':')[1].strip())
     program = list(map(int, full_input[4].split(':')[1].strip().split(',')))
-    print(program)
     
     instruction_pointer = 0
     program_output = []
@@ -59,7 +57,7 @@ def main_a(puzzle_input):
     return output_string
 
 
-def main_b(puzzle_input):
+def main_b_old(puzzle_input):
     full_input = puzzle_input.read().splitlines()
     
     initial_A = 205952832774415
@@ -152,30 +150,11 @@ def find_recursive(i, output, A):
     return None
 
 
-def main_b_test(puzzle_input):
+def main_b(puzzle_input):
     full_input = puzzle_input.read().splitlines()
     program = list(map(int, full_input[4].split(':')[1].strip().split(',')))
 
     A_needed = find_recursive(len(program) - 1, program, 0)
-    # for i, out in enumerate(reversed(program)):
-    #     FOUND = False
-    #     initial_A = A_needed
-    #     A = initial_A
-    #     while not FOUND:
-    #         B = (A % 8)         # 2, 4
-    #         B = B ^ 5           # 1, 5
-    #         C = A // (2 ** B)   # 7, 5
-    #         B = B ^ 6           # 1, 6
-    #         B = B ^ C           # 4, 1
-
-    #         if B % 8 == out: 
-    #             FOUND = True
-    #             print("Jippie:", A, out)
-    #         else:
-    #             A += 1
-
-    #     A_needed += A * 8
-    #     # print(A_needed)
 
     return A_needed
 
@@ -185,4 +164,4 @@ if __name__ == '__main__':
     with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
         print(main_a(full_input))
     with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
-        print(main_b_test(full_input))
+        print(main_b(full_input))
