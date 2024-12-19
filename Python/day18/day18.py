@@ -9,7 +9,7 @@ def dijkstra(walls, source, goal, BOUND):
     queue.append((0, source))
 
     while queue:
-        queue.sort(key=lambda x: -1*x[0])
+        queue.sort(key=lambda x: -1*x[0]) # Sort queue on path length smallest first
         length, coordinates = queue.pop()
 
         if coordinates == goal:
