@@ -14,9 +14,6 @@ def main_a(puzzle_input):
                 if any([c.startswith('t') for c in computer_set]):
                     computer_sets.add(computer_set)
         visited_computers.add(c1)
-    
-    # for s in sorted(list(computer_sets)):
-    #     print(s)
 
     return len(computer_sets)
 
