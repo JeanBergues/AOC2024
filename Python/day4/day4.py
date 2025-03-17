@@ -66,7 +66,7 @@ def main_b(puzzle_input):
 
 
 if __name__ == '__main__':
-    EXAMPLE_MODE = False
+    EXAMPLE_MODE = True
     with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:
         print(main_a(full_input))
     with open('example.txt', 'r') if EXAMPLE_MODE else open('input.txt', 'r') as full_input:

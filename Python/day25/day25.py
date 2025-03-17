@@ -16,7 +16,7 @@ def read_in_keys_locks(puzzle_input):
 
 
 def check_key_lock_combo(key, lock):
-    for l, k in zip(key, lock):
+    for k, l in zip(key, lock):
         if l + k > 5:
             return False
     return True
